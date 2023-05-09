@@ -1,0 +1,8 @@
+# Example
+pipelines:
+  default:
+    - step:
+        image: atlassian/default-image:latest
+        name: fortest
+        script:
+          - echo 'Hello world'
