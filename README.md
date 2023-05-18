@@ -12,35 +12,63 @@
 
 **Metodología**
 
-**Descripción del enfoque utilizado para realizar la PoC, incluyendo las fuentes de datos, casos de uso, pruebas y métricas empleadas.**
+**Descripción del enfoque utilizado para realizar la PoC, incluyendo las fuentes de datos, casos de uso, pruebas y
+métricas empleadas.**
 
 ## Resultados:
 
-**Presentación de los resultados de las pruebas y evaluaciones realizadas durante la PoC, organizados por objetivos o áreas de interés.**
+**Presentación de los resultados de las pruebas y evaluaciones realizadas durante la PoC, organizados por objetivos o
+áreas de interés.**
 (Incluir gráficos, tablas o visualizaciones para facilitar la comprensión de los resultados.)
 
-
-**Análisis de los resultados obtenidos, discutiendo el rendimiento, la escalabilidad, la facilidad de uso, la seguridad y otros aspectos relevantes de la herramienta/solución evaluada.**
+**Análisis de los resultados obtenidos, discutiendo el rendimiento, la escalabilidad, la facilidad de uso, la seguridad
+y otros aspectos relevantes de la herramienta/solución evaluada.**
 (Comparación con soluciones existentes o alternativas, si corresponde.)
 
 **Discusión de los desafíos o limitaciones encontradas durante la PoC.**
 
 **Conclusiones y recomendaciones.**
 
-**Recomendaciones para la implementación, la adopción o la mejora de la herramienta/solución, basadas en los resultados de la PoC.**
+**Recomendaciones para la implementación, la adopción o la mejora de la herramienta/solución, basadas en los resultados
+de la PoC.**
 
 **Referencias**
 
 ---
 
+## How to replicate
 
+**requirements**:
+
+* kubectl
+* minikube
+* helm
+* kustomize
+
+* Kafka and zookeper
+  ```bash
+  # in kafka-with-data folder
+  kubectl apply -k .
+  # expose kafka
+  minikube service kafka-service --url
+  ```
+* Kafka Monitor
+  ```bash
+  # in kafka-with-data folder
+  helm repo add kafka-ui https://provectus.github.io/kafka-ui
+  helm repo update
+  helm install kafka-monitor kafka-ui/kafka-ui -f kafka/monitor-values.yml
+  # get the url using
+  minikube service kafka-monitor-kafka-ui --url
+  ```
+  
 
 ### How to contribute
 
 * Fork the project or clone it
 * Create your own branch following this pattern:
-  * type/your initials/title or jira issue
-    * type:
-      * feature
-      * hotfix
+    * type/your initials/title or jira issue
+        * type:
+            * feature
+            * hotfix
 * Open a PR and assing it to @Zahid Galea

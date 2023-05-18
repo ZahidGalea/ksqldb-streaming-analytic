@@ -1,0 +1,9 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - kafka/kafka.yaml
+  - kafka/kafka-service.yml
+  - zookeper/zk-cs.yml
+  - zookeper/zk-hs.yml
+  - zookeper/zk-pdb.yml
+  - zookeper/zk.yml

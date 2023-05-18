@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: kafka
+spec:
+  serviceName: "kafka-service"
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kafka
+  template:
+    metadata:
+      labels:
+        app: kafka
+    spec:
+      containers:
+      - name: kafka
+        image: confluentinc/cp-kafka:latest
+        ports:
+        - containerPort: 9092
+          name: kafka-port
+        env:
+        - name: KAFKA_ADVERTISED_LISTENERS
+          value: PLAINTEXT://kafka-service:9092
+        - name: KAFKA_BROKER_ID
+          value: "1"
+        - name: KAFKA_ZOOKEEPER_CONNECT
+          value: "zk-cs:2181"
+        volumeMounts:
+        - name: datadir
+          mountPath: /var/lib/kafka
+  volumeClaimTemplates:
+  - metadata:
+      name: datadir
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      resources:
+        requests:
+          storage: 1Gi
