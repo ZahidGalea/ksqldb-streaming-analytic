@@ -7,3 +7,10 @@ resources:
   - zookeper/zk-hs.yml
   - zookeper/zk-pdb.yml
   - zookeper/zk.yml
+  - data-producer.yml
+
+helmCharts:
+  - name: kafka-ui
+    releaseName: kafka-ui
+    repo: https://provectus.github.io/kafka-ui
+    valuesFile: kafka/monitor-values.yml

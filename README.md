@@ -45,22 +45,15 @@ de la PoC.**
 * helm
 * kustomize
 
-* Kafka and zookeper
+* Deploy kafka cluster with data in it.
   ```bash
-  # in kafka-with-data folder
-  kubectl apply -k .
-  # expose kafka
-  minikube service kafka-service --url
+  kubectl kustomize --enable-helm . | kubectl apply -f -
   ```
-* Kafka Monitor
+* If you want to monitor it.
   ```bash
-  # in kafka-with-data folder
-  helm repo add kafka-ui https://provectus.github.io/kafka-ui
-  helm repo update
-  helm install kafka-monitor kafka-ui/kafka-ui -f kafka/monitor-values.yml
-  # get the url using
-  minikube service kafka-monitor-kafka-ui --url
+  minikube service kafka-ui --url
   ```
+
   
 
 ### How to contribute

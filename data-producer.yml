@@ -1,0 +1,18 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: geo-data-generator
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: geo-data-generator
+  template:
+    metadata:
+      labels:
+        app: geo-data-generator
+    spec:
+      containers:
+      - name: geo-data-generator
+        image: zahidgalea/kafka-generator:1.1.0
+        command: ["python","-u","main.py"]
