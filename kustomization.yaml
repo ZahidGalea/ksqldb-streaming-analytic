@@ -8,6 +8,8 @@ resources:
   - zookeper/zk-pdb.yml
   - zookeper/zk.yml
   - data-producer.yml
+  - ksqldb/ksqldb-service.yml
+  - ksqldb/ksqldb.yml
 
 helmCharts:
   - name: kafka-ui

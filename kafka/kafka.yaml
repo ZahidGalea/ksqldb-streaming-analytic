@@ -26,6 +26,13 @@ spec:
           value: "1"
         - name: KAFKA_ZOOKEEPER_CONNECT
           value: "zk-cs:2181"
+        # Following ones are required for ksqldb as this is a single broker kafka.
+        - name: KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR
+          value: "1"
+        - name: KAFKA_TRANSACTION_STATE_LOG_MIN_ISR
+          value: "1"
+        - name: KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR
+          value: "1"
         volumeMounts:
         - name: datadir
           mountPath: /var/lib/kafka

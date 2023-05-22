@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: ksqldb
+spec:
+  serviceName: "ksqldb-service"
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ksqldb
+  template:
+    metadata:
+      labels:
+        app: ksqldb
+    spec:
+      containers:
+      - name: ksqldb
+        image: confluentinc/ksqldb-server:0.28.3
+        ports:
+        - containerPort: 8088
+          name: ksqldb-port
+        env:
+        - name: KSQL_LISTENERS
+          value: http://0.0.0.0:8088
+        - name: KSQL_BOOTSTRAP_SERVERS
+          value: broker:9092
+        - name: KSQL_KSQL_LOGGING_PROCESSING_STREAM_AUTO_CREATE
+          value: "true"
+        - name: KSQL_KSQL_LOGGING_PROCESSING_TOPIC_AUTO_CREATE
+          value: "true"

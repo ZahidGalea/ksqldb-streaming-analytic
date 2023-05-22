@@ -45,16 +45,21 @@ de la PoC.**
 * helm
 * kustomize
 
-* Deploy kafka cluster with data in it.
+---
+
+* Deploys kafka cluster with data in it. also a ksqldb
   ```bash
   kubectl kustomize --enable-helm . | kubectl apply -f -
   ```
-* If you want to monitor it.
+* If you want to monitor the kafka server.
   ```bash
   minikube service kafka-ui --url
   ```
-
-  
+* to use kafkasql cli use the following command.
+  ```bash
+  kubectl run -i --rm --tty ksql-cli --image=confluentinc/ksqldb-cli:latest --restart=Never -- ksql http://ksqldb-service:8088
+  ```
+---
 
 ### How to contribute
 
@@ -65,3 +70,9 @@ de la PoC.**
             * feature
             * hotfix
 * Open a PR and assing it to @Zahid Galea
+
+---
+
+### Good documentation:
+
+https://www.youtube.com/watch?v=Z8_O0wEIafw&t=1178s
