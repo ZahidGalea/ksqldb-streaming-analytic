@@ -7,7 +7,7 @@
 **Descripción general de la herramienta/solución evaluada**.
 
 
-![Diagrama sin título.png](/docs/Diagrama sin título.png)
+![Diagrama sin título.png](/docs/architecture.png)
 
 
 **Objetivos de la PoC**.
