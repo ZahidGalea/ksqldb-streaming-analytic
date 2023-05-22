@@ -6,6 +6,10 @@
 
 **Descripción general de la herramienta/solución evaluada**.
 
+
+![Diagrama sin título.png](/docs/Diagrama sin título.png)
+
+
 **Objetivos de la PoC**.
 
 **Justificación de la PoC (por ejemplo, problemas o desafíos actuales que la herramienta/solución puede abordar)**.
