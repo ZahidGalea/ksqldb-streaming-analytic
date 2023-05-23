@@ -61,7 +61,13 @@ de la PoC.**
   ```
 * to use kafkasql cli use the following command.
   ```bash
+  kubectl delete pod ksql-cli
   kubectl run -i --rm --tty ksql-cli --image=confluentinc/ksqldb-cli:latest --restart=Never -- ksql http://ksqldb-service:8088
+  ```
+
+* To delete everything
+  ```bash
+  kubectl kustomize --enable-helm . | kubectl delete -f -
   ```
 ---
 
@@ -80,3 +86,5 @@ de la PoC.**
 ### Good documentation:
 
 https://www.youtube.com/watch?v=Z8_O0wEIafw&t=1178s
+
+https://ksqldb.io/
