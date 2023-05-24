@@ -64,6 +64,13 @@ de la PoC.**
   kubectl delete pod ksql-cli
   kubectl run -i --rm --tty ksql-cli --image=confluentinc/ksqldb-cli:latest --restart=Never -- ksql http://ksqldb-service:8088
   ```
+  
+* to use a python script to test kafka api
+  ```bash
+  # First expose the pod port, not required in case your script is in minikube
+  kubectl port-forward service/ksqldb-service 8088:8088
+  # Run your python scripts in a new terminal...
+  ```
 
 * To delete everything
   ```bash

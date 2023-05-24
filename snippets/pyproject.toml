@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "poc_ksql_snippets"
+version = "1.0.0"
+description = "Snippets project"
+authors = ["Zahid Galea <zgalea@acid.cl>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "3.8.10"
+python-dotenv = { version = "*", allow-prereleases = true }
+confluent-kafka="2.1.1"
+Faker="18.7.0"
+numpy="1.24.3"
+pandas="2.0.1"
+
+[tool.poetry.group.dev.dependencies]
+black = "*"
+pytest = "7.1.3"
+
