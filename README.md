@@ -31,6 +31,10 @@ y otros aspectos relevantes de la herramienta/solución evaluada.**
 
 **Discusión de los desafíos o limitaciones encontradas durante la PoC.**
 
+* Lack de documentacion, no existe casi documentacion al respecto, me costo encontrar un error, el cual era que si los datos dentro del json de kafka tienen reserved keywords, estas quedan como null en los stream de ksqldb
+
+
+
 **Conclusiones y recomendaciones.**
 
 **Recomendaciones para la implementación, la adopción o la mejora de la herramienta/solución, basadas en los resultados
