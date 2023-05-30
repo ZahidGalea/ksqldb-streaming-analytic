@@ -13,6 +13,7 @@ Faker="18.7.0"
 numpy="1.24.3"
 pandas="2.0.1"
 requests="*"
+bokeh='*'
 
 [tool.poetry.group.dev.dependencies]
 black = "*"

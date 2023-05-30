@@ -2,6 +2,7 @@ import json
 import logging
 import os
 import requests
+import time
 
 logging.basicConfig(level='INFO')
 log = logging.getLogger(__name__)
@@ -95,11 +96,12 @@ def clean_data(data: list):
 	return data
 
 
-def get_ksql_data(query: str) -> (list, list):
+def get_ksql_data(ksqldb_client, query: str) -> (list, list):
 	schema_names = []
 	response = ksqldb_client.execute_ksql_stream_querie(ksql=query)
 	try:
 		for line in response.iter_lines():
+			time.sleep(1)
 			# Filtra las líneas de keep-alive (nuevas líneas en la respuesta HTTP)
 			if line:
 				line_cleaned = line.decode("utf-8")[
@@ -122,7 +124,7 @@ def get_ksql_data(query: str) -> (list, list):
 		print("Deteniendo...")
 
 
-def main(ksqldb_client):
+def geo_data_stream(ksqldb_client: KSQLDB):
 	streams = ksqldb_client.list_streams()
 	log.info(streams.json())
 	# Crear el stream
@@ -144,11 +146,13 @@ def main(ksqldb_client):
 
 	# Obtener datos del stream.
 	query = """SELECT * FROM geo_data_stream EMIT CHANGES;"""
-	for schema, data in get_ksql_data(query=query):
-		print(data)
+	for schema, lista in get_ksql_data(ksqldb_client=ksqldb_client, query=query):
+		print(schema)
+		print(lista)
 
 
 if __name__ == '__main__':
+
 	ksqldb_client = KSQLDB()
 	domain = os.environ.get('KSQLDB_DOMAIN')
 	if domain:
@@ -156,5 +160,4 @@ if __name__ == '__main__':
 	port = os.environ.get('KSQLDB_PORT')
 	if port:
 		ksqldb_client.port = port
-
-	main(ksqldb_client=ksqldb_client)
+	geo_data_stream(ksqldb_client)
