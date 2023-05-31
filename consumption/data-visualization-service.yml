@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: data-visualization-service
+spec:
+  ports:
+    - port: 5006
+  selector:
+    app: data-visualization

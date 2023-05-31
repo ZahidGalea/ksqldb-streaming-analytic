@@ -6,9 +6,7 @@
 
 **Descripción general de la herramienta/solución evaluada**.
 
-
 ![Diagrama sin título.png](/docs/architecture.png)
-
 
 **Objetivos de la PoC**.
 
@@ -31,9 +29,8 @@ y otros aspectos relevantes de la herramienta/solución evaluada.**
 
 **Discusión de los desafíos o limitaciones encontradas durante la PoC.**
 
-* Lack de documentacion, no existe casi documentacion al respecto, me costo encontrar un error, el cual era que si los datos dentro del json de kafka tienen reserved keywords, estas quedan como null en los stream de ksqldb
-
-
+* Lack de documentacion, no existe casi documentacion al respecto, me costo encontrar un error, el cual era que si los
+  datos dentro del json de kafka tienen reserved keywords, estas quedan como null en los stream de ksqldb
 
 **Conclusiones y recomendaciones.**
 
@@ -55,7 +52,7 @@ de la PoC.**
 
 ---
 
-* Deploys kafka cluster with data in it. also a ksqldb
+* Deploys kafka cluster with data in it. also a ksqldb and visualization.
   ```bash
   kubectl kustomize --enable-helm . | kubectl apply -f -
   ```
@@ -68,7 +65,7 @@ de la PoC.**
   kubectl delete pod ksql-cli
   kubectl run -i --rm --tty ksql-cli --image=confluentinc/ksqldb-cli:latest --restart=Never -- ksql http://ksqldb-service:8088
   ```
-  
+
 * to use a python script to test kafka api
   ```bash
   # First expose the pod port, not required in case your script is in minikube
@@ -76,10 +73,23 @@ de la PoC.**
   # Run your python scripts in a new terminal...
   ```
 
+* to deploy visualization
+  ```bash
+  # Build consumption image, first deployment will be failing if this step is not produced
+  docker build -t "zahidgalea/data-visualization:0.2.7" -f consumption/Dockerfile consumption/
+  docker push zahidgalea/data-visualization:0.2.7
+  ```
+  ```bash
+  kubectl port-forward service/data-visualization-service 5006:5006
+  # Open localhost:5006 in your web browser
+  ```
+
+
 * To delete everything
   ```bash
   kubectl kustomize --enable-helm . | kubectl delete -f -
   ```
+
 ---
 
 ### How to contribute

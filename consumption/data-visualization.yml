@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: data-visualization
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: data-visualization
+  template:
+    metadata:
+      labels:
+        app: data-visualization
+    spec:
+      containers:
+        - name: data-visualization
+          image: zahidgalea/data-visualization:0.2.7
+          command: [ "poetry","run","bokeh","serve","--log-level=debug","--show","visualization.py" ]
+          env:
+            - name: KSQLDB_DOMAIN
+              value: ksqldb-service
+            - name: KSQLDB_PORT
+              value: "8088"

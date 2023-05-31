@@ -1,11 +1,7 @@
 import json
-import logging
 import os
 import requests
 import time
-
-logging.basicConfig(level='INFO')
-log = logging.getLogger(__name__)
 
 
 class KSQLDB:
@@ -124,9 +120,7 @@ def get_ksql_data(ksqldb_client, query: str) -> (list, list):
 		print("Deteniendo...")
 
 
-def geo_data_stream(ksqldb_client: KSQLDB):
-	streams = ksqldb_client.list_streams()
-	log.info(streams.json())
+def geo_data_stream_create(ksqldb_client: KSQLDB):
 	# Crear el stream
 	stream_creation = """
 	CREATE OR REPLACE STREAM geo_data_stream (
@@ -144,12 +138,6 @@ def geo_data_stream(ksqldb_client: KSQLDB):
 	if not validate_execution(response):
 		raise Exception(f'Execution failed')
 
-	# Obtener datos del stream.
-	query = """SELECT * FROM geo_data_stream EMIT CHANGES;"""
-	for schema, lista in get_ksql_data(ksqldb_client=ksqldb_client, query=query):
-		print(schema)
-		print(lista)
-
 
 if __name__ == '__main__':
 
@@ -160,4 +148,4 @@ if __name__ == '__main__':
 	port = os.environ.get('KSQLDB_PORT')
 	if port:
 		ksqldb_client.port = port
-	geo_data_stream(ksqldb_client)
+	geo_data_stream_create(ksqldb_client)

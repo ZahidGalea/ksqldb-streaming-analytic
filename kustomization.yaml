@@ -10,6 +10,8 @@ resources:
   - data-producer.yml
   - ksqldb/ksqldb-service.yml
   - ksqldb/ksqldb.yml
+  - consumption/data-visualization.yml
+  - consumption/data-visualization-service.yml
 
 helmCharts:
   - name: kafka-ui
