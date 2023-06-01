@@ -8,14 +8,29 @@
 
 ![Diagrama sin título.png](/docs/architecture.png)
 
+
+
+Esta prueba de concepto (PoC) se realizó para evaluar una solución de procesamiento de datos en tiempo real
+utilizando Apache Kafka y ksqlDB. Kafka es una plataforma de streaming distribuida que permite publicar y 
+suscribir a colas de registros, pero con capacidad de almacenamiento. ksqlDB, 
+por otro lado, es un sistema de base de datos para flujos de eventos en tiempo real 
+que permite ejecutar consultas SQL hacia topicos kafka directamente.
+
 **Objetivos de la PoC**.
+
+El objetivo de esta PoC es determinar la facilidad de implementacion y practicar el uso de de Kafka y ksqlDB
 
 **Justificación de la PoC (por ejemplo, problemas o desafíos actuales que la herramienta/solución puede abordar)**.
 
+Dado el creciente volumen de datos generados por las operaciones comerciales, se ha vuelto esencial 
+para las empresas procesar y analizar estos datos en tiempo real para tomar decisiones basadas en datos.
+Como ACID queremos estar a la par de las tecnologias innovadoras
+
 **Metodología**
 
-**Descripción del enfoque utilizado para realizar la PoC, incluyendo las fuentes de datos, casos de uso, pruebas y
-métricas empleadas.**
+Para llevar a cabo esta PoC, utilizamos un conjunto de datos de prueba que consiste en eventos generados por un simulador.
+Realizamos una serie de pruebas que incluyen la ingestión de datos y el procesamiento en tiempo real.
+
 
 ## Resultados:
 
@@ -23,21 +38,22 @@ métricas empleadas.**
 áreas de interés.**
 (Incluir gráficos, tablas o visualizaciones para facilitar la comprensión de los resultados.)
 
-**Análisis de los resultados obtenidos, discutiendo el rendimiento, la escalabilidad, la facilidad de uso, la seguridad
-y otros aspectos relevantes de la herramienta/solución evaluada.**
-(Comparación con soluciones existentes o alternativas, si corresponde.)
+![kafkaui.png](/docs/kafkaui.png)
+
+![img.png](/docs/img.png)
 
 **Discusión de los desafíos o limitaciones encontradas durante la PoC.**
 
 * Lack de documentacion, no existe casi documentacion al respecto, me costo encontrar un error, el cual era que si los
   datos dentro del json de kafka tienen reserved keywords, estas quedan como null en los stream de ksqldb
 
-**Conclusiones y recomendaciones.**
-
-**Recomendaciones para la implementación, la adopción o la mejora de la herramienta/solución, basadas en los resultados
-de la PoC.**
 
 **Referencias**
+
+https://www.youtube.com/watch?v=Z8_O0wEIafw&t=1178s
+
+https://ksqldb.io/
+
 
 ---
 
@@ -84,7 +100,6 @@ de la PoC.**
   # Open localhost:5006 in your web browser
   ```
 
-
 * To delete everything
   ```bash
   kubectl kustomize --enable-helm . | kubectl delete -f -
@@ -103,9 +118,3 @@ de la PoC.**
 * Open a PR and assing it to @Zahid Galea
 
 ---
-
-### Good documentation:
-
-https://www.youtube.com/watch?v=Z8_O0wEIafw&t=1178s
-
-https://ksqldb.io/
